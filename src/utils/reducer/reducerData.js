@@ -1,0 +1,34 @@
+/* eslint-disable no-undef */
+const defaultState = {
+  data: [],
+  arrayData: [],
+  isLoading: false,
+  getSucess: false,
+  getFailure: false,
+};
+export default reducerData = (state = defaultState, action) => {
+  switch (action.type) {
+    case 'GET_DATA_PENDING':
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'GET_DATA_FULFILLED':
+      return {
+        ...state,
+        data: action.payload.data,
+        isLoading: false,
+        getSucess: true,
+        getFailure: false,
+      };
+    case 'GET_DATA_REJECTED':
+      return {
+        ...state,
+        isLoading: true,
+        getSucess: false,
+        getFailure: true,
+      };
+    default:
+      return state;
+  }
+};
